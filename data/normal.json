@@ -1,0 +1,67 @@
+{
+  "kind": "webdav-sync",
+  "assets": [
+    {
+      "path": "observation.bin",
+      "bytes": 6,
+      "sha256": "8efb52225b75882e24b4ef473eee7a527b05e56c745c4685fc4b04b2619a52dc"
+    },
+    {
+      "path": "sync.xml",
+      "bytes": 431,
+      "sha256": "8ebabdfccc63d4934a5ed2f571e9c31c6ee46ba0472be2c01e7e1dfdebb8cb7a"
+    }
+  ],
+  "collection": "https://dav.test/obs/",
+  "initial_token": "t1",
+  "initial_resources": [
+    {
+      "resource_id": "urn:uuid:one",
+      "href": "/obs/old.bin",
+      "etag": "\"e1\"",
+      "body": {
+        "path": "observation.bin",
+        "bytes": 6,
+        "sha256": "8efb52225b75882e24b4ef473eee7a527b05e56c745c4685fc4b04b2619a52dc"
+      }
+    }
+  ],
+  "required_properties": [
+    "resource-id",
+    "getetag",
+    "resourcetype"
+  ],
+  "calls": [
+    {
+      "request": {
+        "method": "REPORT",
+        "url": "https://dav.test/obs/"
+      },
+      "response": {
+        "status": 207,
+        "body": {
+          "path": "sync.xml",
+          "bytes": 431,
+          "sha256": "8ebabdfccc63d4934a5ed2f571e9c31c6ee46ba0472be2c01e7e1dfdebb8cb7a"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "https://dav.test/obs/new.bin"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "ETag": "\"e1\""
+        },
+        "body": {
+          "path": "observation.bin",
+          "bytes": 6,
+          "sha256": "8efb52225b75882e24b4ef473eee7a527b05e56c745c4685fc4b04b2619a52dc"
+        }
+      }
+    }
+  ]
+}

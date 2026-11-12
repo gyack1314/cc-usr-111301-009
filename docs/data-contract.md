@@ -1,0 +1,7 @@
+# DAV只读目录演练
+
+所有XML按命名空间DAV:匹配，resource-id内href是URN身份，不当作下载URL。response/href为相对collection路径，先百分号语义规范再校验归属；拒绝编码/及编码反斜杠、NUL、..归一越界，不把href拼成可写路径。GET强ETag只认非W/前缀带引号值，缺ETag或变化须资源重取。
+
+必要属性由required_properties列出；同response可有多个propstat，某属性非成功不可由其他成功属性掩盖。资源级404/410与getetag属性404含义不同。重命名的删除及新增按整页候选状态汇合，以resource-id建身份沿革，不把先处理旧href删除造成正式内容丢失。
+
+失效token409需PROPFIND新代全枚举，本地full_enumeration_complete=false说明演练中断，不能推进新token和删除旧资源。calls只提供只读HTTP资料，初始Replay不解析XML、不维护token。必要属性补采若来源没有后续响应则记录pending。
